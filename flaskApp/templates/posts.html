@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block head %}
+
+<title>All Posts</title>
+
+{% endblock %}
+
+
+{% block body %}
+
+<h1>This contains all the Post of the page</h1>
+ <Table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Author</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for post in posts %}
+            <tr key={{ post.id }} >
+                <td> {{ post.id }} </td>
+                <td> {{ post.title }}</td>
+                <td> {{ post.author }}</td>
+                {% if post.content %}
+                    <h4> {{post.content}} </h4>
+                {% else %}
+                    <h4>No conte</h4>
+                {% endif %}
+                <td> {{post.date_created}} </td>
+                <a href="/posts/delete/{{post.id}}" > Delete </a>
+                <br>
+                <a href="/posts/edit/{{post.id}}" > Edit </a>
+                <hr>
+            </tr>
+        {% endfor %}
+    </tbody>
+ </Table>
+
+{% endblock %}
